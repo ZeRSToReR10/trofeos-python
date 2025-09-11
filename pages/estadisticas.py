@@ -23,13 +23,11 @@ def main():
         st.warning("⚠️ No hay estadísticas guardadas en la base de datos todavía.")
         return
 
-    # Agrupar por temporada
     agrupado = {}
     for est in datos:
         temp = est.get("temporada", "Desconocida")
         agrupado.setdefault(temp, []).append(est)
 
-    # Ordenar temporadas
     temporadas_ordenadas = sorted(
         agrupado.keys(),
         key=lambda t: t.split("/")[0] if "/" in t else t
@@ -41,7 +39,6 @@ def main():
         equipo_doc = equipos.find_one({"temporada": temp})
         nombre_equipo = equipo_doc["equipo"] if equipo_doc else "Sin equipo"
 
-        # Logo
         ruta_logo = os.path.join(RUTA_IMAGENES, f"{nombre_equipo}.png")
 
         col1, col2 = st.columns([1, 6])
@@ -51,7 +48,6 @@ def main():
         with col2:
             st.subheader(f"📅 Temporada {temp} - {nombre_equipo}")
 
-        # Tabla de estadísticas
         filas = []
         total_partidos = total_goles = total_asistencias = total_amarillas = total_rojas = 0
 
