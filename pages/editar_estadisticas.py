@@ -18,23 +18,17 @@ def main():
     trofeos = collections["trofeos"]
 
     st.title("✏️ Agregar Estadísticas")
-
-
-    # Selección de categoría
     categoria = st.selectbox("📂 Categoría", list(categorias_individuales.keys()))
-
-    # Selección de competencia según categoría
+    
     competencias = categorias_individuales.get(categoria, [])
     competencia = st.selectbox("🏆 Competencia", competencias)
 
-    # Selección de temporada
     temporada = st.selectbox("📅 Temporada", [
         "22/23","23/24", "24/25", "25/26", "26/27", "27/28", "28/29",
         "29/30", "30/31", "31/32", "32/33", "33/34", "34/35",
         "35/36", "36/37", "37/38", "38/39", "39/40", "40/41"
     ])
 
-    # Formulario de estadísticas
     st.markdown("### 📊 Ingresar Estadísticas")
     col1, col2 = st.columns(2)
 
