@@ -44,10 +44,9 @@ if tipo_preset == "Colectivo" or nombre_base in ["Máximo Goleador", "Máximo As
 else:
     categoria = None
 
-# Temporada
+
 temporada = st.selectbox("📅 Temporada", temporadas_disponibles)
 
-# Campos de goles y asistencias
 goles = 0
 asistencias = 0
 if tipo_preset == "Colectivo":
@@ -60,7 +59,6 @@ elif nombre_base == "Máximo Asistente":
 
 # ----------------- Guardar -----------------
 if st.button("💾 Guardar Trofeo"):
-    # Construcción del nombre y ámbito
     nombre = nombre_base
     ambito = "local"
 
