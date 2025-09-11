@@ -1,0 +1,26 @@
+# Entorno virtual
+venv/
+.env
+
+# Configuración de VSCode
+.vscode/
+
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de datos/imagenes temporales
+*.db
+*.sqlite3
+*.log
+*.csv
+*.xlsx
+
+# Streamlit cache
+.streamlit/
