@@ -5,8 +5,6 @@ from PIL import Image, ImageTk
 import os
 from tabulate import tabulate
 
-
-# Conexión MongoDB
 client = MongoClient('mongodb://localhost:27017/')
 db = client['trophycabinet']
 trofeos = db['trophies']
@@ -26,14 +24,11 @@ def ventana_ver_trofeos(tipo_filtro):
     # Carpeta donde están tus imágenes
     RUTA_IMAGENES = "C:\\Users\\GAMING\\Desktop\\Proyectos\\trofeos python\\imagenes_trofeos"
 
-    # Diccionario uniforme y completo para nombres y archivos de imagen
     MAPEO_IMAGENES = {
-        # Trofeos individuales - premios específicos con imagen propia
         "Balón de oro": "balon_de_oro.png",
         "Bota de oro": "bota_de_oro.png",
         "Jugador UEFA": "jugador_uefa.png",
 
-        # Trofeos individuales - máximos goleadores/asistentes y mejor jugador, con logo según competición
         "Máximo Goleador UEFA Champions League": "champions_league_logo.png",
         "Máximo Asistente UEFA Champions League": "champions_league_logo.png",
         "Mejor Jugador UEFA Champions League": "champions_league_logo.png",
@@ -178,7 +173,6 @@ def ventana_ver_trofeos(tipo_filtro):
         "Máximo Asistente Supercopa Johan Cruyff (Holanda)": "supercopa_johan_cruyff_logo.png",
         "Mejor Jugador Supercopa Johan Cruyff (Holanda)": "supercopa_johan_cruyff_logo.png",
 
-        # Trofeos colectivos (copas)
         "UEFA Champions League": "champions_cup.png",
         "Intercontinental": "intercontinental_cup.png",
         "UEFA Europa League": "europa_league_cup.png",
@@ -206,7 +200,6 @@ def ventana_ver_trofeos(tipo_filtro):
         "Coupe de France (Francia)": "coupe_de_france_cup.png",
         "CONMEBOL Recopa": "CONMEBOL_recopa.png",
 
-        # Supercopas Nacionales Europeas
         "Supercopa de España (España)": "supercopa_espana_cup.png",
         "Community Shield (Inglaterra)": "community_shield_cup.png",
         "Supercoppa di Lega (Italia)": "supercoppa_italia_cup.png",
@@ -214,7 +207,6 @@ def ventana_ver_trofeos(tipo_filtro):
         "Trofeo de Campeones (Francia)": "trofeo_campeones_francia_cup.png",
         "Supercopa Johan Cruyff (Holanda)": "supercopa_johan_cruyff_cup.png",
 
-        # Ligas y Copas faltantes
         "Eredivise (Holanda)": "eredivisie_cup.png",
         "Copa Coca-Cola Zero (Chile)": "copa_coca_cola_zero_cup.png",
         "Copa Argentina de Futbol (Argentina)": "copa_argentina_cup.png",
@@ -261,17 +253,13 @@ def ventana_ver_trofeos(tipo_filtro):
     tarjeta_font = ("Verdana", 11)
     tarjeta_bg = "#f7f7f7"
     tarjeta_border = {"bd": 1, "relief": "solid"}
-
-    # Obtener todos los trofeos del tipo
     trofeos_filtrados = list(trofeos.find({"tipo": tipo_filtro}))
 
-    # Agrupar por temporada
     agrupados_por_temporada = {}
     for t in trofeos_filtrados:
         temp = t.get("temporada", "Desconocida")
         agrupados_por_temporada.setdefault(temp, []).append(t)
 
-    # Ordenar temporadas cronológicamente (ascendente)
     temporadas_ordenadas = sorted(
         agrupados_por_temporada.keys(),
         key=lambda t: temporada_orden.get(t, 999)
@@ -281,7 +269,6 @@ def ventana_ver_trofeos(tipo_filtro):
     fila_actual = 0
 
     for temporada in temporadas_ordenadas:
-        # Título de temporada
         doc_equipo = equipos.find_one({"temporada": temporada})
         nombre_equipo = f" – {doc_equipo['equipo']}" if doc_equipo else ""
 
@@ -296,7 +283,7 @@ def ventana_ver_trofeos(tipo_filtro):
             img_logo = Image.open(equipo_logo_path).resize((24, 24), Image.Resampling.LANCZOS)
             logo_equipo_imgtk = ImageTk.PhotoImage(img_logo)
             logos_equipos[(temporada, equipo_nombre)] = logo_equipo_imgtk
-        # Ordenar trofeos dentro de la temporada: internacionales primero
+
         trofeos_temp = sorted(
             agrupados_por_temporada[temporada],
             key=lambda x: 0 if x.get("ambito") == "internacional" else 1
@@ -335,7 +322,6 @@ def ventana_ver_trofeos(tipo_filtro):
                 except Exception as e:
                     print(f"Error cargando imagen: {e}")
 
-            # Texto del trofeo
             tk.Label(tarjeta, text=f"🏆 {nombre}", bg=tarjeta_bg, font=("Arial", 12, "bold")).pack(anchor="w")
             
 
@@ -608,23 +594,21 @@ def ventana_ver_estadisticas():
         key=lambda t: t.split("/")[0] if "/" in t else t
     )
 
-    logos = {}  # Para evitar que las imágenes se pierdan por el recolector de basura
+    logos = {}
 
     for temp in temporadas_ordenadas:
-        # Obtener equipo de esa temporada
+       
         equipo_doc = equipos.find_one({"temporada": temp})
         nombre_equipo = equipo_doc["equipo"] if equipo_doc else "Sin equipo"
 
-        # Cargar imagen si existe
         ruta_logo = os.path.join(ruta_imagenes, f"{nombre_equipo}.png")
         logo_imagen = None
         if os.path.exists(ruta_logo):
             img = Image.open(ruta_logo)
-            img = img.resize((32, 32))  # Escalar a tamaño pequeño
+            img = img.resize((32, 32))
             logo_imagen = ImageTk.PhotoImage(img)
-            logos[temp] = logo_imagen  # Guardar para mantener referencia
+            logos[temp] = logo_imagen  
 
-        # Mostrar encabezado con logo y nombre de equipo
         header_frame = tk.Frame(scrollable_frame, bg="white")
         header_frame.pack(pady=(15, 5), anchor="w", padx=10)
 
@@ -882,8 +866,7 @@ def agregar_equipo_temporada():
 
     ventana.mainloop()
 
-    # Ruta donde están las imágenes de los logos
-    RUTA_LOGOS = "C:\\Users\\GAMING\\Desktop\\Proyectos\\trofeos python\\equipos"  # Ejemplo: "C:/imagenes/logos_equipos"
+    RUTA_LOGOS = "C:\\Users\\GAMING\\Desktop\\Proyectos\\trofeos python\\equipos" 
 
     ventana = tk.Tk()
     ventana.title("Agregar/Actualizar Equipo por Temporada")
@@ -899,7 +882,6 @@ def agregar_equipo_temporada():
     combo_equipo.pack()
     combo_equipo.current(0)
 
-    # Label para mostrar logo
     label_logo = tk.Label(ventana, bg="white")
     label_logo.pack(pady=10)
 
@@ -923,7 +905,7 @@ def agregar_equipo_temporada():
             label_logo.image = None
 
     combo_equipo.bind("<<ComboboxSelected>>", actualizar_logo)
-    actualizar_logo()  # Cargar logo al iniciar
+    actualizar_logo() 
 
     def guardar_equipo():
         temporada = combo_temporada.get()
