@@ -54,6 +54,7 @@ Las categorías y competencias están definidas también en modules/constants.py
 * [Streamlit](https://streamlit.io/) - Interfaz web
 * [Pymongo](https://pymongo.readthedocs.io/) - Conexión a MongoDB desde Python
 
-
+---
+⌨️ con ❤️ por [ZeRSToReR](https://github.com/ZeRSToReR10) 😊
 
 
