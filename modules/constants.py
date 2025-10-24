@@ -198,8 +198,9 @@ TEMPORADAS_DISPONIBLES = [
 
 CATEGORIAS_INDIVIDUALES = {
         "Selecciones": ["FIFA World Cup", "UEFA Eurocopa", "CONMEBOL Copa América"],
+        "Clasificatorias": ["Clasificatorias Sudamericanas", "Clasificatorias Europeas"],
         "Competiciones Internacionales Europeas": ["UEFA Champions League", "UEFA Europa League", "UEFA Conference League","UEFA SuperCup"],
-        "Competiciones Internacionales Sudamericanas": ["CONMEBOL Libertadores", "CONMEBOL Sudamericana", "CONMEBOL Recopa","CONMEBOL Copa América"],
+        "Competiciones Internacionales Sudamericanas": ["CONMEBOL Libertadores", "CONMEBOL Sudamericana", "CONMEBOL Recopa"],
         "Torneos Mundiales": ["Intercontinental", "FIFA Club World Cup"],
         "Ligas Nacionales Europeas": ["LaLiga EA Sports (España)", "Premier League (Inglaterra)", "Serie A TIM (Italia)", "Bundesliga (Alemania)", "Ligue 1 Uber Eats (Francia)", "Eredivise (Holanda)"],
         "Copas Nacionales Europeas": ["Copa del Rey (España)", "FA Cup (Inglaterra)", "Carabao Cup (Inglaterra)", "Coppa Italia (Italia)", "DFB-Pokal (Alemania)", "Coupe de France (Francia), KNVB Beker (Holanda)"],
