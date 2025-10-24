@@ -51,7 +51,7 @@ if collections:
                     
                     ruta_img = None
                     if nombre in MAPEO_IMAGENES:
-                        ruta_img = f"images/{MAPEO_IMAGENES[nombre]}"
+                        ruta_img = f"imagenes_trofeos/{MAPEO_IMAGENES[nombre]}"
                     
                     if ruta_img and os.path.exists(ruta_img):
                         st.image(ruta_img, width=200)
