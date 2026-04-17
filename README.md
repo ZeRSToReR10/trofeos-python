@@ -1,6 +1,6 @@
 # Vitrina de Trofeos – Modo Carrera
 
-Esta aplicación en Python permite gestionar, visualizar y editar trofeos y estadísticas de jugadores y equipos en modo carrera de FIFA / FC. Utiliza MongoDB como base de datos y Streamlit para la interfaz web.
+Esta aplicación en Python permite gestionar, visualizar y editar trofeos y estadísticas de jugadores y equipos en modo carrera de FIFA / FC o BAL de PES / FL26. Utiliza MongoDB como base de datos y Streamlit para la interfaz web.
 
 ### Pre-requisitos 📋
 ```
