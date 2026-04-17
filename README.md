@@ -22,7 +22,7 @@ trofeos-python/
 
 1. Clona el repositorio:
 ```
-git clone git@github.com:tu_usuario/trofeos-python.git
+git clone https://github.com/ZeRSToReR10/trofeos-python.git
 cd trofeos-python
 ```
 2. Crea un entorno virtual e instala dependencias:
